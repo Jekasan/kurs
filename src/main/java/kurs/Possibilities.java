@@ -8,6 +8,10 @@ import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.nio.file.attribute.BasicFileAttributes;
+import java.time.Instant;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
 
 public class Possibilities {
     public static void list(String path){
@@ -54,6 +58,13 @@ public class Possibilities {
             System.out.println("Введен неверный путь!");
         }
     }
+
+    public static String time(long l){
+        Instant instant = Instant.ofEpochMilli(l);
+        LocalDateTime dateTime = LocalDateTime.ofInstant(instant, ZoneId.systemDefault());
+        DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("dd. MMMM yyyy. HH:mm:ss");
+        return dateTime.format(dateTimeFormatter);
+    }    
 
     public static void createDir(String path){
         File folder = new File(path);
